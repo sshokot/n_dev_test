@@ -1,0 +1,16 @@
+<?xml version='1.0' ?>
+<odoo>
+ <record id='primary_address_partner_form' model='ir.ui.view'>
+  <field name='name'>Primary adsress</field>
+  <field name='model'>res.partner</field>
+  <field name='inherit_id' ref='base.view_partner_form' />
+  <field name='arch' type='xml'>
+   <xpath expr="//notebook[1]//page[1]//form[1]//field[@name='comment']" position="after">     
+     <field name='primary_address' attrs = "{'invisible':[('type','!=','delivery')]}"/>
+   </xpath>
+<!--   <xpath expr="//noteboook[1]//page[1]//kanban[1]//templates[1]//field[@name='name']" position="after">
+      <field name='primary_address' attrs = "{'invisible':[('type','!=','delivery')]}"/>
+   </xpath> -->
+  </field>
+ </record>
+</odoo>

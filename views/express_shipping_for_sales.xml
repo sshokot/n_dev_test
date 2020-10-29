@@ -1,0 +1,13 @@
+<?xml version='1.0' ?>
+<odoo>
+ <record id = 'express_ship_sale_order_line_form' model='ir.ui.view'>
+  <field name='name'>Express shipping for sale.order.line</field>
+  <field name='model'>sale.order</field>
+  <field name='inherit_id' ref="sale.view_order_form" />
+  <field name='arch' type='xml'>
+   <xpath expr="//notebook[1]//page[1]//tree[1]//field[@name='product_uom_qty']" position="after">
+    <field name='express_shipping' />
+   </xpath>
+  </field>
+ </record>
+</odoo>
