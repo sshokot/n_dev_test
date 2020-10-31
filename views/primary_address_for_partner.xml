@@ -8,9 +8,13 @@
    <xpath expr="//notebook[1]//page[1]//form[1]//field[@name='comment']" position="after">     
      <field name='primary_address' attrs = "{'invisible':[('type','!=','delivery')]}"/>
    </xpath>
-<!--   <xpath expr="//noteboook[1]//page[1]//kanban[1]//templates[1]//field[@name='name']" position="after">
-      <field name='primary_address' attrs = "{'invisible':[('type','!=','delivery')]}"/>
-   </xpath> -->
+   <xpath expr="//notebook[1]//page[1]//kanban[1]//field[@name='name']" position="after">
+    <field name = 'primary_address' />
+   </xpath>
+   <xpath expr="//notebook[1]//page[1]//kanban[1]//templates[1]//field[@name='name']" position="after">
+      <span t-if="record.primary_address.raw_value">primary address</span>
+      <span t-else="record.primary_address.raw_value" />    
+   </xpath> 
   </field>
  </record>
 </odoo>
