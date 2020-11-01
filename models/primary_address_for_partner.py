@@ -9,19 +9,16 @@ class PrimaryAddressForPartner(models.Model):
 
     def write(self, values):
         not_allowed = False
-
         partners = self.env['res.partner']
-        address_ids = self.mapped('id')
-        print(values)
-        print('childs ',self.child_ids)
         unlink_addresses = []
         has_delivery = False
         primary_count = 0
+# проверка контактной информации для предмет добавления,удаления адресов
         if values.get('child_ids'): 
           for child_to_update in values.get('child_ids'):
                if child_to_update[0] == 1:
-                   adres = partners.search([('id','=',child_to_update[1])])
-                   adres.write(child_to_update[2])
+                   address = partners.search([('id','=',child_to_update[1])])
+                   address.write(child_to_update[2])
                elif child_to_update[0] == 2:
                    unlink_addresses.append(child_to_update[1])
                elif child_to_update[0] == 0:
@@ -30,11 +27,9 @@ class PrimaryAddressForPartner(models.Model):
                        has_delivery = True
                        if adr.get('primary_address'):
                            primary_count += 1
-
+# проверка наличия  адресов с типом деливери и их количества
         str_error = ''
-        print('childs ',self.child_ids)
         addresses = self.child_ids
-        print('adr ', addresses)
         for address in addresses:
             adr_to_check = address
             if address.id in unlink_addresses:
