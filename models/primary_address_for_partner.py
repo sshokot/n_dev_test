@@ -31,7 +31,6 @@ class PrimaryAddressForPartner(models.Model):
         str_error = ''
         addresses = self.child_ids
         for address in addresses:
-            adr_to_check = address
             if address.id in unlink_addresses:
                 continue
             if address.type == 'delivery':
