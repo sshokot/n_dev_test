@@ -18,7 +18,6 @@ class SaleOrder(models.Model):
      procurement_group_id_express = fields.Many2one('procurement.group', 'Procurement Group For express Shipping', copy=False)
 
      def _run_procurement_for_lines(self, lines, previous_product_uom_qty=False):
-
          precision = self.env['decimal.precision'].precision_get('Product Unit of Measure')
          procurements = []
          for line in lines:
@@ -56,8 +55,8 @@ class SaleOrder(models.Model):
                  line.product_id, product_qty, procurement_uom,
                  line.order_id.partner_shipping_id.property_stock_customer,
                  line.name, line.order_id.name, line.order_id.company_id, values))
-             if procurements:
-                 self.env['procurement.group'].run(procurements)
+         if procurements:
+             self.env['procurement.group'].run(procurements)
          return True
 
      def _action_confirm_with_express(self):
